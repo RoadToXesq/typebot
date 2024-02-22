@@ -160,13 +160,9 @@ export const DropOffEdge = ({
         }
       >
         <Tooltip
-          label={
-            isWorkspaceProPlan
-              ? `At this input, ${totalDroppedUser} user${
-                  (totalDroppedUser ?? 2) > 1 ? 's' : ''
-                } left. This represents ${dropOffRate}% of the users who saw this input.`
-              : 'Upgrade your plan to PRO to reveal drop-off rate.'
-          }
+          label={`At this input, ${totalDroppedUser} user${
+            (totalDroppedUser ?? 2) > 1 ? 's' : ''
+          } left. This represents ${dropOffRate}% of the users who saw this input.`}
           placement="top"
         >
           <VStack
@@ -177,29 +173,15 @@ export const DropOffEdge = ({
             justifyContent="center"
             w="full"
             h="full"
-            onClick={isWorkspaceProPlan ? undefined : onUnlockProPlanClick}
-            cursor={isWorkspaceProPlan ? 'auto' : 'pointer'}
+            onClick={undefined}
+            cursor={'auto'}
             spacing={0.5}
           >
-            <Text filter={isWorkspaceProPlan ? '' : 'blur(2px)'} fontSize="sm">
-              {isWorkspaceProPlan ? (
-                dropOffRate
-              ) : (
-                <Text as="span" filter="blur(2px)">
-                  X
-                </Text>
-              )}
-              %
+            <Text filter={''} fontSize="sm">
+              {dropOffRate}%
             </Text>
             <Tag colorScheme="red" size="sm">
-              {isWorkspaceProPlan ? (
-                totalDroppedUser
-              ) : (
-                <Text as="span" filter="blur(3px)" mr="1">
-                  NN
-                </Text>
-              )}{' '}
-              user{(totalDroppedUser ?? 2) > 1 ? 's' : ''}
+              {totalDroppedUser} user{(totalDroppedUser ?? 2) > 1 ? 's' : ''}
             </Tag>
           </VStack>
         </Tooltip>
